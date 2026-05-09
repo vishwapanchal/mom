@@ -5,20 +5,145 @@ import './style.css';
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Simple audio handling
+  // Enhanced audio handling with autoplay and page visibility
   const musicBtn = document.getElementById('music-toggle');
   const bgMusic = document.getElementById('bg-music');
   let isPlaying = false;
+  let userInteracted = false;
+  let shouldPlay = true; // Flag to track if music should be playing
 
-  musicBtn.addEventListener('click', () => {
-    if (isPlaying) {
-      bgMusic.pause();
-      musicBtn.classList.remove('playing');
-    } else {
-      bgMusic.play();
+  // Function to start music
+  const startMusic = async () => {
+    if (!shouldPlay) return;
+    
+    try {
+      await bgMusic.play();
+      isPlaying = true;
       musicBtn.classList.add('playing');
+      musicBtn.classList.remove('loading');
+      console.log('Music started successfully');
+    } catch (error) {
+      console.log('Autoplay prevented by browser:', error);
+      musicBtn.classList.remove('loading');
+      // Music will start after first user interaction
     }
-    isPlaying = !isPlaying;
+  };
+
+  // Function to pause music
+  const pauseMusic = () => {
+    if (bgMusic && !bgMusic.paused) {
+      bgMusic.pause();
+    }
+    isPlaying = false;
+    musicBtn.classList.remove('playing');
+  };
+
+  // Function to resume music
+  const resumeMusic = async () => {
+    if (!shouldPlay || !userInteracted) return;
+    
+    try {
+      await bgMusic.play();
+      isPlaying = true;
+      musicBtn.classList.add('playing');
+    } catch (error) {
+      console.log('Could not resume music:', error);
+    }
+  };
+
+  // Show loading state initially
+  musicBtn.classList.add('loading');
+
+  // Try to start music immediately when page loads
+  setTimeout(() => {
+    startMusic();
+  }, 1000); // Small delay to ensure page is ready
+
+  // Handle user interaction for browsers that block autoplay
+  const handleFirstInteraction = async () => {
+    if (!userInteracted) {
+      userInteracted = true;
+      if (!isPlaying && shouldPlay) {
+        await startMusic();
+      }
+      // Remove listeners after first interaction
+      document.removeEventListener('click', handleFirstInteraction);
+      document.removeEventListener('touchstart', handleFirstInteraction);
+      document.removeEventListener('keydown', handleFirstInteraction);
+      document.removeEventListener('scroll', handleFirstInteraction);
+    }
+  };
+
+  // Add listeners for first user interaction
+  document.addEventListener('click', handleFirstInteraction);
+  document.addEventListener('touchstart', handleFirstInteraction);
+  document.addEventListener('keydown', handleFirstInteraction);
+  document.addEventListener('scroll', handleFirstInteraction);
+
+  // Music button toggle
+  musicBtn.addEventListener('click', () => {
+    userInteracted = true;
+    musicBtn.classList.remove('loading');
+    
+    if (shouldPlay && isPlaying) {
+      // User wants to stop music
+      shouldPlay = false;
+      pauseMusic();
+    } else {
+      // User wants to start music
+      shouldPlay = true;
+      startMusic();
+    }
+  });
+
+  // Page Visibility API - pause/resume music based on tab visibility
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      // Page is hidden (user switched tabs or minimized)
+      if (isPlaying) {
+        pauseMusic();
+      }
+    } else {
+      // Page is visible again
+      if (shouldPlay && userInteracted) {
+        resumeMusic();
+      }
+    }
+  });
+
+  // Handle window focus/blur events as backup for older browsers
+  window.addEventListener('blur', () => {
+    if (isPlaying) {
+      pauseMusic();
+    }
+  });
+
+  window.addEventListener('focus', () => {
+    if (shouldPlay && userInteracted) {
+      resumeMusic();
+    }
+  });
+
+  // Handle page unload
+  window.addEventListener('beforeunload', () => {
+    pauseMusic();
+  });
+
+  // Audio event listeners
+  bgMusic.addEventListener('loadstart', () => {
+    musicBtn.classList.add('loading');
+  });
+
+  bgMusic.addEventListener('canplay', () => {
+    musicBtn.classList.remove('loading');
+    if (shouldPlay && !isPlaying) {
+      startMusic();
+    }
+  });
+
+  bgMusic.addEventListener('error', () => {
+    musicBtn.classList.remove('loading');
+    console.log('Audio loading error');
   });
 
   // Enhanced GSAP Animations
