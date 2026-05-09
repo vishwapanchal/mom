@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=vishwawishesmothersday"
+    "deploy": "npm run build && npx wrangler pages deploy dist --project-name=vishwawishesmothersday",
+    "git-deploy": "git add . && git commit -m \"Update: $(date)\" && git push && npm run deploy"
   },
   "devDependencies": {
     "vite": "^8.0.10"
