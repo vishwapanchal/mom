@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Happy Mother's Day, Amma ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&family=Cinzel:wght@500;700&family=Baloo+Tamma+2:wght@400;600;800&display=swap" rel="stylesheet" />
+  <!-- Import the model-viewer component -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body>
+  <button id="music-toggle" class="music-btn" aria-label="Toggle Music">🎵</button>
+
+  <header class="hero" id="top">
+    <nav class="nav" aria-label="Main navigation">
+      <div class="nav__brand">To Amma</div>
+      <div class="baby-illustration-wrapper" style="width: 180px; height: 180px; margin: 1rem auto 0 auto;">
+        <model-viewer 
+          src="/baby.glb" 
+          auto-rotate 
+          camera-controls 
+          shadow-intensity="1" 
+          style="width: 100%; height: 100%; background-color: transparent;" 
+          interaction-prompt="none" 
+          rotation-per-second="30deg">
+        </model-viewer>
+      </div>
+    </nav>
+
+    <div class="hero__container">
+      <section class="hero__content" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 2rem;">
+        <div class="hero__text-content">
+          <p class="hero__tag">With Endless Love</p>
+          <h1 class="hero__title">
+            Happy Mother's Day,<br />
+            <span class="hero__title--accent">Amma ❤️</span>
+          </h1>
+          <p class="hero__subtitle">
+            To the woman who taught me that love knows no boundaries and home is wherever you are.
+          </p>
+        </div>
+
+        <div class="hero__media-row" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; width: 100%;">
+          <div class="flower-container" style="width: 280px; height: 280px;">
+            <model-viewer 
+              src="/flower.glb" 
+              auto-rotate 
+              camera-controls 
+              shadow-intensity="1" 
+              style="width: 100%; height: 100%; background-color: transparent;" 
+              interaction-prompt="none" 
+              rotation-per-second="15deg">
+            </model-viewer>
+          </div>
+          
+          <div class="letter-container">
+            <div class="animated-letter">
+              <div class="letter-paper">
+                <div class="letter-header">
+                  <div class="letter-date">Mother's Day 2026</div>
+                </div>
+                <div class="letter-content-preview">
+                  <div class="letter-greeting">Dearest Amma,</div>
+                  <div class="letter-text">
+                    <p class="letter-paragraph">Your love has been my constant strength. From childhood dreams to engineering challenges, you've always believed in me.</p>
+                    <p class="letter-paragraph">Every achievement, every step forward I take is possible because of you. You are my hero, my inspiration, my everything.</p>
+                    <p class="letter-closing">Happy Mother's Day!</p>
+                  </div>
+                </div>
+                <div class="letter-signature">
+                  <span class="signature-text">With Love, Vishwa ❤️</span>
+                </div>
+                <div class="letter-fold"></div>
+              </div>
+              <div class="letter-shadow"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Made with love</span>
+      <div class="scroll-indicator__line"></div>
+    </div>
+  </header>
+
+  <main>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <p class="footer__main">
+        Made with everything you taught me <span class="heart-beat">❤️</span> by Vishwa
+      </p>
+      <p class="footer__wishes">
+        Happy Mother's Day, Amma! 🌸
+      </p>
+    </div>
+  </footer>
+
+  <audio id="bg-music" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
