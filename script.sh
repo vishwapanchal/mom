@@ -1,3 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+echo "===================================================="
+echo "✍️ Adding your beautiful apology and gratitude..."
+echo "===================================================="
+
+cat > index.html << 'EOF'
 <!DOCTYPE html>
 <html lang="kn">
 <head>
@@ -142,3 +151,6 @@
   <script src="main.js"></script>
 </body>
 </html>
+EOF
+
+echo "✅ Apology and gratitude seamlessly added to the letter!"
