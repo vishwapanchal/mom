@@ -323,32 +323,60 @@ body {
   }
 }
 
+/* Letter Paper Redesign */
 .letter-paper {
-  width: 600px;
-  height: 750px;
-  background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
+  width: 650px;
+  height: 800px;
+  background: 
+    linear-gradient(135deg, #fefefe 0%, #f9f9f9 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 24px,
+      rgba(200, 200, 200, 0.1) 25px
+    );
   border-radius: 15px;
-  padding: 3.5rem;
+  padding: 4rem;
   position: relative;
   box-shadow: 
-    0 25px 60px rgba(0,0,0,0.3),
-    0 12px 30px rgba(0,0,0,0.2),
-    inset 0 1px 0 rgba(255,255,255,0.9),
-    inset 0 0 40px rgba(255,255,255,0.7);
-  border: 2px solid rgba(255, 117, 140, 0.1);
+    0 30px 70px rgba(0,0,0,0.35),
+    0 15px 35px rgba(0,0,0,0.25),
+    inset 0 2px 0 rgba(255,255,255,0.9),
+    inset 0 0 50px rgba(255,255,255,0.8);
+  border: 3px solid rgba(255, 117, 140, 0.15);
   transform-style: preserve-3d;
-  animation: paperSway 12s ease-in-out infinite;
+  animation: paperFloat 15s ease-in-out infinite;
   overflow: hidden;
 }
 
-.letter-paper::after {
-  content: '💕';
+.letter-paper::before {
+  content: '';
   position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-  font-size: 1.5rem;
-  opacity: 0.4;
-  animation: heartPulse 3s ease-in-out infinite;
+  top: 0;
+  left: 60px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    rgba(255, 117, 140, 0.3) 10%, 
+    rgba(255, 117, 140, 0.3) 90%, 
+    transparent 100%
+  );
+}
+
+@keyframes paperFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+  }
+  25% { 
+    transform: translateY(-8px) rotateX(1deg) rotateY(1deg); 
+  }
+  50% { 
+    transform: translateY(-12px) rotateX(0deg) rotateY(-1deg); 
+  }
+  75% { 
+    transform: translateY(-6px) rotateX(-1deg) rotateY(1deg); 
+  }
 }
 
 .letter-paper::before {
@@ -384,6 +412,7 @@ body {
   }
 }
 
+/* Letter Header */
 .letter-header {
   text-align: right;
   margin-bottom: 3rem;
@@ -392,51 +421,108 @@ body {
 }
 
 .letter-date {
-  font-family: var(--font-gentle);
+  font-family: var(--font-motherly);
   color: var(--primary);
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   opacity: 0;
-  animation: dateAppear 2s ease-out 1s both;
-  font-weight: 400;
+  animation: writeIn 1.5s ease-out 1s both;
+  margin-bottom: 0.5rem;
 }
 
-@keyframes dateAppear {
+.letter-location {
+  font-family: var(--font-gentle);
+  color: #666;
+  font-size: 1rem;
+  opacity: 0;
+  animation: writeIn 1.5s ease-out 1.5s both;
+  font-style: italic;
+}
+
+/* Letter Greeting */
+.letter-greeting {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.greeting-text {
+  font-family: var(--font-motherly);
+  font-size: 2.2rem;
+  color: var(--primary);
+  font-weight: 600;
+  opacity: 0;
+  animation: writeIn 2s ease-out 2s both;
+  display: inline-block;
+}
+
+.greeting-underline {
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), transparent);
+  margin-top: 0.5rem;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: underlineGrow 1.5s ease-out 3.5s both;
+}
+
+/* Letter Body */
+.letter-body {
+  font-family: var(--font-playful);
+  font-size: 1.25rem;
+  line-height: 2.2;
+  color: #2c2c2c;
+}
+
+.letter-section {
+  margin-bottom: 2.5rem;
+}
+
+.letter-paragraph {
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  text-align: justify;
+  position: relative;
+}
+
+.letter-indent {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin-right: 0.2rem;
+}
+
+/* Writing Animation for Each Paragraph */
+.para-1 { animation: typeWriter 3s ease-out 4s both; }
+.para-2 { animation: typeWriter 3s ease-out 6s both; }
+.para-3 { animation: typeWriter 3s ease-out 10s both; }
+.para-4 { animation: typeWriter 3s ease-out 12s both; }
+
+@keyframes typeWriter {
   0% { 
     opacity: 0;
-    transform: translateY(-10px) rotate(-2deg);
+    transform: translateX(-20px);
+  }
+  10% {
+    opacity: 0.3;
   }
   100% { 
-    opacity: 0.8;
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes writeIn {
+  0% { 
+    opacity: 0;
+    transform: translateY(-10px) rotate(-1deg);
+  }
+  100% { 
+    opacity: 1;
     transform: translateY(0) rotate(0deg);
   }
 }
 
-.letter-content-preview {
-  margin-bottom: 3rem;
-  position: relative;
-  z-index: 2;
-  padding: 0 0.5rem;
-}
-
-.letter-greeting {
-  font-family: var(--font-motherly);
-  font-size: 1.8rem;
-  color: var(--primary);
-  margin-bottom: 2rem;
-  opacity: 0;
-  animation: textAppear 1s ease-out 2s both;
-  font-weight: 600;
-  position: relative;
-  text-align: center;
-}
-
-.letter-greeting::after {
-  content: '🌸 ❤️ 🌸';
-  display: block;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-  opacity: 0.7;
-  animation: decorAppear 1s ease-out 2.5s both;
+@keyframes underlineGrow {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
 }
 
 .letter-text {
@@ -537,33 +623,135 @@ body {
   }
 }
 
+/* Letter Signature */
 .letter-signature {
   position: absolute;
-  bottom: 3.5rem;
-  right: 3.5rem;
+  bottom: 4rem;
+  right: 4rem;
   z-index: 2;
 }
 
-.signature-text {
-  font-family: var(--font-motherly);
-  color: var(--primary);
-  font-size: 1.8rem;
-  animation: signatureWrite 3s ease-out 7s both;
-  position: relative;
-  font-weight: 700;
+.signature-line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
 }
 
-.signature-text::after {
-  content: '';
+.signature-label {
+  font-family: var(--font-gentle);
+  font-size: 1rem;
+  color: #666;
+  opacity: 0;
+  animation: writeIn 1.5s ease-out 16s both;
+  font-style: italic;
+}
+
+.signature-name {
+  font-family: var(--font-motherly);
+  font-size: 2rem;
+  color: var(--primary);
+  font-weight: 700;
+  opacity: 0;
+  animation: signatureWrite 3s ease-out 17s both;
+}
+
+.signature-flourish {
+  margin-top: 0.5rem;
+  opacity: 0;
+  animation: flourishDraw 2s ease-out 19s both;
+}
+
+.signature-curve {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: curveDraw 2s ease-out 19s both;
+}
+
+@keyframes signatureWrite {
+  0% { 
+    opacity: 0;
+    transform: translateX(-30px) rotate(-3deg) scale(0.8);
+    filter: blur(2px);
+  }
+  30% {
+    opacity: 0.5;
+    filter: blur(1px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateX(0) rotate(0deg) scale(1);
+    filter: blur(0px);
+  }
+}
+
+@keyframes flourishDraw {
+  0% { 
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% { 
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+@keyframes curveDraw {
+  0% { 
+    stroke-dashoffset: 100;
+  }
+  100% { 
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Letter Decorations */
+.letter-decorations {
   position: absolute;
-  bottom: -3px;
+  top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
-  transform: scaleX(0);
-  transform-origin: left;
-  animation: underlineWrite 1.5s ease-out 9s both;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.corner-decoration {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: decorationAppear 1s ease-out both;
+}
+
+.top-left {
+  top: 1.5rem;
+  left: 1.5rem;
+  animation-delay: 20s;
+}
+
+.top-right {
+  top: 1.5rem;
+  right: 1.5rem;
+  animation-delay: 20.5s;
+}
+
+.bottom-left {
+  bottom: 1.5rem;
+  left: 1.5rem;
+  animation-delay: 21s;
+}
+
+@keyframes decorationAppear {
+  0% { 
+    opacity: 0;
+    transform: scale(0) rotate(180deg);
+  }
+  50% {
+    transform: scale(1.3) rotate(90deg);
+  }
+  100% { 
+    opacity: 0.6;
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 @keyframes signatureWrite {
@@ -703,12 +891,12 @@ body {
   }
   
   .letter-paper {
-    width: 500px;
-    height: 650px;
+    width: 550px;
+    height: 700px;
     padding: 3rem;
   }
   
-  .letter-text {
+  .letter-body {
     font-size: 1.1rem;
   }
   
@@ -717,17 +905,17 @@ body {
     line-height: 2;
   }
   
-  .letter-greeting {
-    font-size: 1.6rem;
+  .greeting-text {
+    font-size: 1.8rem;
   }
   
-  .signature-text {
-    font-size: 1.6rem;
+  .signature-name {
+    font-size: 1.7rem;
   }
   
-  .letter-rose-divider .flower-container {
-    width: 150px !important;
-    height: 150px !important;
+  .letter-rose-section .flower-container {
+    width: 140px !important;
+    height: 140px !important;
   }
   
   .hero__title { font-size: 3rem; }
@@ -749,48 +937,56 @@ body {
   }
   
   .letter-paper {
-    width: 350px;
-    height: 500px;
+    width: 380px;
+    height: 550px;
     padding: 2.5rem;
   }
   
-  .letter-text {
+  .letter-body {
     font-size: 1rem;
-    line-height: 1.8;
+    line-height: 2;
   }
   
   .letter-paragraph {
     font-size: 0.95rem;
-    line-height: 1.9;
-    text-indent: 1.5rem;
+    line-height: 2;
+    margin-bottom: 2rem;
   }
   
-  .letter-greeting {
-    font-size: 1.4rem;
+  .greeting-text {
+    font-size: 1.6rem;
     margin-bottom: 1.5rem;
   }
   
   .letter-closing {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-top: 2rem;
   }
   
-  .signature-text {
-    font-size: 1.4rem;
+  .signature-name {
+    font-size: 1.5rem;
   }
   
   .letter-date {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
-  .letter-rose-divider .flower-container {
+  .letter-rose-section .flower-container {
     width: 120px !important;
     height: 120px !important;
-    margin: 1.5rem auto !important;
   }
   
-  .letter-rose-divider {
+  .letter-rose-section {
     margin: 2rem 0;
+  }
+  
+  .letter-signature {
+    bottom: 2.5rem;
+    right: 2.5rem;
+  }
+  
+  .corner-decoration {
+    font-size: 1rem;
   }
   
   .hero__title { font-size: 2.2rem; }
