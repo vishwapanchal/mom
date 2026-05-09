@@ -12,6 +12,10 @@
   --font-sans: 'Poppins', sans-serif;
   --font-serif: 'Cinzel', serif;
   --font-script: 'Great Vibes', cursive;
+  --font-motherly: 'Dancing Script', cursive;
+  --font-warm: 'Pacifico', cursive;
+  --font-gentle: 'Satisfy', cursive;
+  --font-playful: 'Kalam', cursive;
   --font-kannada: 'Baloo Tamma 2', cursive;
   --container-width: 1200px;
 }
@@ -116,6 +120,28 @@ body {
   animation: noteFloat 2s ease-in-out infinite;
 }
 
+@keyframes decorAppear {
+  0% { 
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+  }
+  100% { 
+    opacity: 0.7;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heartPulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.3; 
+  }
+  50% { 
+    transform: scale(1.2); 
+    opacity: 0.6; 
+  }
+}
+
 @keyframes noteFloat {
   0%, 100% { 
     transform: translateY(0px); 
@@ -148,9 +174,12 @@ body {
 }
 
 .nav__brand {
-  font-family: var(--font-script);
-  font-size: 2.5rem;
+  font-family: var(--font-motherly);
+  font-size: 3rem;
   color: var(--primary);
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(255, 117, 140, 0.3);
+  letter-spacing: 1px;
 }
 
 .hero__container {
@@ -171,8 +200,8 @@ body {
 
 .baby-illustration-wrapper {
   margin-bottom: 2rem;
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   animation: babyFloat 4s ease-in-out infinite;
   filter: drop-shadow(0 8px 16px rgba(0,0,0,0.2));
 }
@@ -210,31 +239,39 @@ body {
 
 .hero__tag {
   color: var(--primary-light);
-  font-size: 0.9rem;
-  letter-spacing: 2px;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 1rem;
+  font-family: var(--font-gentle);
+  font-weight: 400;
+  text-shadow: 0 2px 8px rgba(255, 117, 140, 0.3);
 }
 
 .hero__title {
-  font-family: var(--font-serif);
-  font-size: 4rem;
+  font-family: var(--font-motherly);
+  font-size: 4.5rem;
   line-height: 1.1;
   margin-bottom: 1.5rem;
+  text-shadow: 0 3px 15px rgba(255, 117, 140, 0.2);
+  font-weight: 600;
 }
 
 .hero__title--accent {
   color: var(--primary);
-  font-family: var(--font-script);
-  font-size: 5rem;
-  font-weight: normal;
+  font-family: var(--font-motherly);
+  font-size: 5.5rem;
+  font-weight: 600;
+  text-shadow: 0 4px 20px rgba(255, 117, 140, 0.4);
 }
 
 .hero__subtitle {
-  font-family: var(--font-kannada);
-  font-size: 1.2rem;
+  font-family: var(--font-playful);
+  font-size: 1.3rem;
   color: var(--text-muted);
   margin-bottom: 2rem;
+  font-weight: 400;
+  text-shadow: 0 1px 5px rgba(255, 117, 140, 0.2);
 }
 
 /* Animated Letter Styles */
@@ -278,6 +315,16 @@ body {
   overflow: hidden;
 }
 
+.letter-paper::after {
+  content: '💕';
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.2rem;
+  opacity: 0.3;
+  animation: heartPulse 3s ease-in-out infinite;
+}
+
 .letter-paper::before {
   content: '';
   position: absolute;
@@ -319,11 +366,12 @@ body {
 }
 
 .letter-date {
-  font-family: var(--font-script);
+  font-family: var(--font-gentle);
   color: var(--primary);
   font-size: 1.4rem;
   opacity: 0;
   animation: dateAppear 2s ease-out 1s both;
+  font-weight: 400;
 }
 
 @keyframes dateAppear {
@@ -341,28 +389,45 @@ body {
   margin-bottom: 3rem;
   position: relative;
   z-index: 2;
+  padding: 0 0.5rem;
 }
 
 .letter-greeting {
-  font-family: var(--font-script);
+  font-family: var(--font-motherly);
   font-size: 1.8rem;
   color: var(--primary);
   margin-bottom: 2rem;
   opacity: 0;
   animation: textAppear 1s ease-out 2s both;
+  font-weight: 600;
+  position: relative;
+  text-align: center;
+}
+
+.letter-greeting::after {
+  content: '🌸 ❤️ 🌸';
+  display: block;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  opacity: 0.7;
+  animation: decorAppear 1s ease-out 2.5s both;
 }
 
 .letter-text {
-  font-family: var(--font-sans);
+  font-family: var(--font-playful);
   font-size: 1.1rem;
-  line-height: 1.8;
+  line-height: 1.9;
   color: #333;
+  font-weight: 400;
 }
 
 .letter-paragraph {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
   opacity: 0;
   animation: textAppear 1s ease-out both;
+  text-align: justify;
+  text-indent: 1.5rem;
+  line-height: 2;
 }
 
 .letter-paragraph:nth-child(1) {
@@ -375,11 +440,13 @@ body {
 
 .letter-closing {
   margin-top: 2rem;
-  font-family: var(--font-script);
+  font-family: var(--font-motherly);
   font-size: 1.4rem;
   color: var(--primary);
   opacity: 0;
   animation: textAppear 1s ease-out 3.5s both;
+  font-weight: 600;
+  font-style: italic;
 }
 
 @keyframes textAppear {
@@ -401,11 +468,12 @@ body {
 }
 
 .signature-text {
-  font-family: var(--font-script);
+  font-family: var(--font-motherly);
   color: var(--primary);
   font-size: 1.6rem;
   animation: signatureWrite 3s ease-out 3s both;
   position: relative;
+  font-weight: 700;
 }
 
 .signature-text::after {
@@ -499,6 +567,9 @@ body {
   align-items: center;
   gap: 1rem;
   opacity: 0.7;
+  font-family: var(--font-gentle);
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
 .scroll-indicator__line {
@@ -525,12 +596,15 @@ body {
 .footer__main {
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  font-family: var(--font-playful);
+  font-weight: 400;
 }
 
 .footer__wishes {
-  font-family: var(--font-script);
+  font-family: var(--font-motherly);
   font-size: 2.5rem;
   color: var(--primary-light);
+  font-weight: 600;
 }
 
 /* Responsive */
