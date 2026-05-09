@@ -120,6 +120,32 @@ body {
   animation: noteFloat 2s ease-in-out infinite;
 }
 
+@keyframes roseBloom {
+  0% { 
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.2) rotate(-90deg);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes lineAppear {
+  0% { 
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  100% { 
+    opacity: 0.6;
+    transform: scaleX(1);
+  }
+}
+
 @keyframes decorAppear {
   0% { 
     opacity: 0;
@@ -298,30 +324,30 @@ body {
 }
 
 .letter-paper {
-  width: 450px;
-  height: 550px;
+  width: 600px;
+  height: 750px;
   background: linear-gradient(135deg, #fefefe 0%, #f8f8f8 100%);
-  border-radius: 12px;
-  padding: 3rem;
+  border-radius: 15px;
+  padding: 3.5rem;
   position: relative;
   box-shadow: 
-    0 20px 50px rgba(0,0,0,0.25),
-    0 8px 25px rgba(0,0,0,0.15),
+    0 25px 60px rgba(0,0,0,0.3),
+    0 12px 30px rgba(0,0,0,0.2),
     inset 0 1px 0 rgba(255,255,255,0.9),
-    inset 0 0 30px rgba(255,255,255,0.6);
-  border: 1px solid rgba(0,0,0,0.1);
+    inset 0 0 40px rgba(255,255,255,0.7);
+  border: 2px solid rgba(255, 117, 140, 0.1);
   transform-style: preserve-3d;
-  animation: paperSway 10s ease-in-out infinite;
+  animation: paperSway 12s ease-in-out infinite;
   overflow: hidden;
 }
 
 .letter-paper::after {
   content: '💕';
   position: absolute;
-  top: 1rem;
-  left: 1rem;
-  font-size: 1.2rem;
-  opacity: 0.3;
+  top: 1.5rem;
+  left: 1.5rem;
+  font-size: 1.5rem;
+  opacity: 0.4;
   animation: heartPulse 3s ease-in-out infinite;
 }
 
@@ -415,19 +441,68 @@ body {
 
 .letter-text {
   font-family: var(--font-playful);
-  font-size: 1.1rem;
-  line-height: 1.9;
+  font-size: 1.2rem;
+  line-height: 2;
   color: #333;
   font-weight: 400;
 }
 
-.letter-paragraph {
-  margin-bottom: 1.8rem;
+.letter-section {
+  margin-bottom: 1rem;
+}
+
+.letter-section-1 .letter-paragraph:nth-child(1) {
+  animation-delay: 2.5s;
+}
+
+.letter-section-1 .letter-paragraph:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.letter-rose-divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2.5rem 0;
+  position: relative;
+}
+
+.letter-rose-divider::before,
+.letter-rose-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
   opacity: 0;
-  animation: textAppear 1s ease-out both;
+  animation: lineAppear 1s ease-out 4s both;
+}
+
+.letter-rose-divider .flower-container {
+  animation: roseBloom 2s ease-out 4.5s both;
+  opacity: 0;
+  transform: scale(0) rotate(-180deg);
+}
+
+.letter-section-2 .letter-paragraph:nth-child(1) {
+  animation-delay: 5.5s;
+}
+
+.letter-section-2 .letter-paragraph:nth-child(2) {
+  animation-delay: 6s;
+}
+
+.letter-section-2 .letter-closing {
+  animation-delay: 6.5s;
+}
+
+.letter-paragraph {
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: textAppear 1.2s ease-out both;
   text-align: justify;
-  text-indent: 1.5rem;
-  line-height: 2;
+  text-indent: 2rem;
+  line-height: 2.1;
+  font-size: 1.15rem;
 }
 
 .letter-paragraph:nth-child(1) {
@@ -439,14 +514,16 @@ body {
 }
 
 .letter-closing {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   font-family: var(--font-motherly);
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: var(--primary);
   opacity: 0;
-  animation: textAppear 1s ease-out 3.5s both;
+  animation: textAppear 1.2s ease-out both;
   font-weight: 600;
   font-style: italic;
+  text-align: center;
+  text-indent: 0;
 }
 
 @keyframes textAppear {
@@ -462,16 +539,16 @@ body {
 
 .letter-signature {
   position: absolute;
-  bottom: 3rem;
-  right: 3rem;
+  bottom: 3.5rem;
+  right: 3.5rem;
   z-index: 2;
 }
 
 .signature-text {
   font-family: var(--font-motherly);
   color: var(--primary);
-  font-size: 1.6rem;
-  animation: signatureWrite 3s ease-out 3s both;
+  font-size: 1.8rem;
+  animation: signatureWrite 3s ease-out 7s both;
   position: relative;
   font-weight: 700;
 }
@@ -479,14 +556,14 @@ body {
 .signature-text::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -3px;
   left: 0;
   right: 0;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
   transform: scaleX(0);
   transform-origin: left;
-  animation: underlineWrite 1s ease-out 5s both;
+  animation: underlineWrite 1.5s ease-out 9s both;
 }
 
 @keyframes signatureWrite {
@@ -620,32 +697,37 @@ body {
     gap: 2rem;
   }
   
-  .flower-container {
-    width: 220px !important;
-    height: 220px !important;
-  }
-  
   .baby-illustration-wrapper {
     width: 150px !important;
     height: 150px !important;
   }
   
   .letter-paper {
-    width: 350px;
-    height: 450px;
-    padding: 2.5rem;
+    width: 500px;
+    height: 650px;
+    padding: 3rem;
   }
   
   .letter-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+  
+  .letter-paragraph {
+    font-size: 1.05rem;
+    line-height: 2;
   }
   
   .letter-greeting {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
   
   .signature-text {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+  }
+  
+  .letter-rose-divider .flower-container {
+    width: 150px !important;
+    height: 150px !important;
   }
   
   .hero__title { font-size: 3rem; }
@@ -661,43 +743,54 @@ body {
     gap: 1.5rem;
   }
   
-  .flower-container {
-    width: 180px !important;
-    height: 180px !important;
-  }
-  
   .baby-illustration-wrapper {
     width: 120px !important;
     height: 120px !important;
   }
   
   .letter-paper {
-    width: 280px;
-    height: 360px;
-    padding: 2rem;
+    width: 350px;
+    height: 500px;
+    padding: 2.5rem;
   }
   
   .letter-text {
-    font-size: 0.9rem;
-    line-height: 1.6;
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+  
+  .letter-paragraph {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    text-indent: 1.5rem;
   }
   
   .letter-greeting {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 1.5rem;
   }
   
   .letter-closing {
-    font-size: 1.2rem;
-    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    margin-top: 2rem;
   }
   
   .signature-text {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
   }
   
   .letter-date {
     font-size: 1.2rem;
+  }
+  
+  .letter-rose-divider .flower-container {
+    width: 120px !important;
+    height: 120px !important;
+    margin: 1.5rem auto !important;
+  }
+  
+  .letter-rose-divider {
+    margin: 2rem 0;
   }
   
   .hero__title { font-size: 2.2rem; }

@@ -43,18 +43,7 @@
           </p>
         </div>
 
-        <div class="hero__media-row" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 3rem; width: 100%;">
-          <div class="flower-container" style="width: 320px; height: 320px;">
-            <model-viewer 
-              src="/flower.glb" 
-              auto-rotate 
-              camera-controls 
-              shadow-intensity="1" 
-              style="width: 100%; height: 100%; background-color: transparent;" 
-              interaction-prompt="none" 
-              rotation-per-second="15deg">
-            </model-viewer>
-          </div>
+        <div class="hero__media-row" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2rem; width: 100%;">
           
           <div class="letter-container">
             <div class="animated-letter">
@@ -65,10 +54,30 @@
                 <div class="letter-content-preview">
                   <div class="letter-greeting">Dearest Amma,</div>
                   <div class="letter-text">
-                    <p class="letter-paragraph">Your love has been my constant strength through every phase of life. From my childhood dreams to my engineering studies, from learning new programming languages to facing life's challenges, your unwavering support has been my guiding light.</p>
-                    <p class="letter-paragraph">Every opportunity I have today exists because of your countless sacrifices. You gave up your comforts so I could chase my dreams. You stayed awake when I was sick, celebrated my small victories as if they were the greatest achievements.</p>
-                    <p class="letter-paragraph">Your teachings go beyond words, Amma. You taught me kindness, resilience, and the importance of staying grounded. Whether I'm debugging code or making life decisions, I hear your voice guiding me.</p>
-                    <p class="letter-closing">You are not just my mother, you are my hero, my inspiration, my everything. Happy Mother's Day!</p>
+                    <div class="letter-section letter-section-1">
+                      <p class="letter-paragraph">Your love has been my constant strength through every phase of life. From my childhood dreams to my engineering studies, from learning new programming languages to facing life's challenges, your unwavering support has been my guiding light.</p>
+                      <p class="letter-paragraph">Every opportunity I have today exists because of your countless sacrifices. You gave up your comforts so I could chase my dreams.</p>
+                    </div>
+                    
+                    <div class="letter-rose-divider">
+                      <div class="flower-container" style="width: 180px; height: 180px; margin: 2rem auto;">
+                        <model-viewer 
+                          src="/flower.glb" 
+                          auto-rotate 
+                          camera-controls 
+                          shadow-intensity="1" 
+                          style="width: 100%; height: 100%; background-color: transparent;" 
+                          interaction-prompt="none" 
+                          rotation-per-second="15deg">
+                        </model-viewer>
+                      </div>
+                    </div>
+                    
+                    <div class="letter-section letter-section-2">
+                      <p class="letter-paragraph">You stayed awake when I was sick, celebrated my small victories as if they were the greatest achievements. Your teachings go beyond words, Amma.</p>
+                      <p class="letter-paragraph">You taught me kindness, resilience, and the importance of staying grounded. Whether I'm debugging code or making life decisions, I hear your voice guiding me.</p>
+                      <p class="letter-closing">You are not just my mother, you are my hero, my inspiration, my everything. Happy Mother's Day!</p>
+                    </div>
                   </div>
                 </div>
                 <div class="letter-signature">
